@@ -1,0 +1,1 @@
+# edge_qad_main_3ch
