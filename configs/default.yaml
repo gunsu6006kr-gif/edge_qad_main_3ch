@@ -1,0 +1,47 @@
+student:
+  n_class : 5
+  rec_dropout : 0
+  attention : class
+
+  n_input_ch : 2
+  activation : relu
+  normalization : batch
+  conv_dropout : 0.5
+  kernel_size : [ 3, 3, 3, 3, 3, 3, 3]
+  padding : [ 1, 1, 1, 1, 1, 1, 1]
+  stride : [ 1, 1, 1, 1, 1, 1, 1]
+
+  nb_filters : [ 32, 64, 128, 256 , 256, 256, 256] # ShuffleFAC V3
+  pooling : [ [ 2, 2 ], [ 2, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ] ]
+  pool_dim : time
+
+teacher:
+  n_class : 5
+  rec_dropout : 0
+  attention: class                      # time / class
+  n_input_ch: 1
+  activation: cg
+  conv_dropout: 0.5
+  normalization : batch
+  kernel_size: [ 3, 3, 3, 3, 3, 3, 3 ]
+  padding: [ 1, 1, 1, 1, 1, 1, 1 ]
+  stride: [ 1, 1, 1, 1, 1, 1, 1 ]
+  nb_filters: [ 32, 64, 128, 256, 256, 256, 256 ]
+  pooling: [ [ 2, 2 ], [ 2, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ], [ 1, 2 ] ]
+  pool_dim: time 
+
+feats:
+  n_mels: 128
+  n_fft: 4096
+  hop_length: 2048
+  win_length: 4096
+  sample_rate: 16000
+  f_min: 0.0
+  f_max: 8000
+  power : 1.0
+
+data:
+  train_folder : "/home/baek/Desktop/deepship_data/DeepShip/Segements_10s_16k/train"
+  val_folder: "/home/baek/Desktop/deepship_data/DeepShip/Segements_10s_16k/val"
+  test_folder: "/home/baek/Desktop/deepship_data/DeepShip/Segements_10s_16k/test"
+  audio_max_len: 3
